@@ -11,6 +11,17 @@
 		ED5624512AC4AA730099EA10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5624502AC4AA730099EA10 /* ContentView.swift */; };
 		ED5624532AC4AA750099EA10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5624522AC4AA750099EA10 /* Assets.xcassets */; };
 		ED5624562AC4AA750099EA10 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5624552AC4AA750099EA10 /* Preview Assets.xcassets */; };
+		ED56245E2AC4AE580099EA10 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56245D2AC4AE580099EA10 /* ListView.swift */; };
+		ED5624632AC4B0F90099EA10 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = ED5624622AC4B0F90099EA10 /* Nuke */; };
+		ED5624652AC4B0F90099EA10 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = ED5624642AC4B0F90099EA10 /* NukeExtensions */; };
+		ED5624672AC4B0F90099EA10 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED5624662AC4B0F90099EA10 /* NukeUI */; };
+		ED5624692AC4B1E70099EA10 /* PurrrImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5624682AC4B1E70099EA10 /* PurrrImage.swift */; };
+		ED56246B2AC4B2F00099EA10 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56246A2AC4B2F00099EA10 /* DataService.swift */; };
+		ED5624892AC4B9990099EA10 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5624882AC4B9990099EA10 /* ImageModel.swift */; };
+		ED56248C2AC4C03F0099EA10 /* ScreensViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56248B2AC4C03F0099EA10 /* ScreensViewModel.swift */; };
+		ED56248E2AC4CDCD0099EA10 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56248D2AC4CDCD0099EA10 /* MainView.swift */; };
+		ED5624902AC4D6710099EA10 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED56248F2AC4D6710099EA10 /* GridView.swift */; };
+		ED5624922AC4DE590099EA10 /* FullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5624912AC4DE590099EA10 /* FullView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +30,14 @@
 		ED5624502AC4AA730099EA10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ED5624522AC4AA750099EA10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED5624552AC4AA750099EA10 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ED56245D2AC4AE580099EA10 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		ED5624682AC4B1E70099EA10 /* PurrrImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurrrImage.swift; sourceTree = "<group>"; };
+		ED56246A2AC4B2F00099EA10 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		ED5624882AC4B9990099EA10 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		ED56248B2AC4C03F0099EA10 /* ScreensViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreensViewModel.swift; sourceTree = "<group>"; };
+		ED56248D2AC4CDCD0099EA10 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		ED56248F2AC4D6710099EA10 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		ED5624912AC4DE590099EA10 /* FullView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED5624672AC4B0F90099EA10 /* NukeUI in Frameworks */,
+				ED5624632AC4B0F90099EA10 /* Nuke in Frameworks */,
+				ED5624652AC4B0F90099EA10 /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +75,11 @@
 			children = (
 				ED56244E2AC4AA730099EA10 /* PurrrfectImagesApp.swift */,
 				ED5624502AC4AA730099EA10 /* ContentView.swift */,
+				ED56248D2AC4CDCD0099EA10 /* MainView.swift */,
+				ED5624682AC4B1E70099EA10 /* PurrrImage.swift */,
+				ED56246A2AC4B2F00099EA10 /* DataService.swift */,
+				ED5624882AC4B9990099EA10 /* ImageModel.swift */,
+				ED56245C2AC4AE4B0099EA10 /* Screens */,
 				ED5624522AC4AA750099EA10 /* Assets.xcassets */,
 				ED5624542AC4AA750099EA10 /* Preview Content */,
 			);
@@ -65,6 +92,17 @@
 				ED5624552AC4AA750099EA10 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED56245C2AC4AE4B0099EA10 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				ED56245D2AC4AE580099EA10 /* ListView.swift */,
+				ED56248F2AC4D6710099EA10 /* GridView.swift */,
+				ED56248B2AC4C03F0099EA10 /* ScreensViewModel.swift */,
+				ED5624912AC4DE590099EA10 /* FullView.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +121,11 @@
 			dependencies = (
 			);
 			name = PurrrfectImages;
+			packageProductDependencies = (
+				ED5624622AC4B0F90099EA10 /* Nuke */,
+				ED5624642AC4B0F90099EA10 /* NukeExtensions */,
+				ED5624662AC4B0F90099EA10 /* NukeUI */,
+			);
 			productName = PurrrfectImages;
 			productReference = ED56244B2AC4AA730099EA10 /* PurrrfectImages.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +154,9 @@
 				Base,
 			);
 			mainGroup = ED5624422AC4AA730099EA10;
+			packageReferences = (
+				ED5624612AC4B0F90099EA10 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = ED56244C2AC4AA730099EA10 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +184,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5624512AC4AA730099EA10 /* ContentView.swift in Sources */,
+				ED56248E2AC4CDCD0099EA10 /* MainView.swift in Sources */,
+				ED5624892AC4B9990099EA10 /* ImageModel.swift in Sources */,
+				ED56248C2AC4C03F0099EA10 /* ScreensViewModel.swift in Sources */,
+				ED5624692AC4B1E70099EA10 /* PurrrImage.swift in Sources */,
 				ED56244F2AC4AA730099EA10 /* PurrrfectImagesApp.swift in Sources */,
+				ED56245E2AC4AE580099EA10 /* ListView.swift in Sources */,
+				ED5624902AC4D6710099EA10 /* GridView.swift in Sources */,
+				ED56246B2AC4B2F00099EA10 /* DataService.swift in Sources */,
+				ED5624922AC4DE590099EA10 /* FullView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +391,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED5624612AC4B0F90099EA10 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED5624622AC4B0F90099EA10 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED5624612AC4B0F90099EA10 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		ED5624642AC4B0F90099EA10 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED5624612AC4B0F90099EA10 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		ED5624662AC4B0F90099EA10 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED5624612AC4B0F90099EA10 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED5624432AC4AA730099EA10 /* Project object */;
 }

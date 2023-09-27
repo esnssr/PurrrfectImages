@@ -1,0 +1,73 @@
+//
+//  GridView.swift
+//  PurrrfectImages
+//
+//  Created by Eslam Nahel on 2023-09-27.
+//
+
+import SwiftUI
+
+struct GridView: View {
+    
+    @ObservedObject var viewModel = ScreensViewModel()
+    var imageSize: MainView.ImageSizes = .small
+    
+    let columns = [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
+    ]
+    
+    var body: some View {
+        VStack {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 24) {
+                    ForEach(Array(viewModel.viewData.enumerated()), id: \.1) { index, item in
+                        VStack(alignment: .leading) {
+                            Image(systemName: "photo.circle.fill")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 60, height: 60)
+                                .padding(8)
+                                .frame(width: 130, height: 130)
+                                .purrrImage(item.urls[imageSize.rawValue])
+                                .frame(width: 130, height: 130)
+                                .background(.blue.gradient)
+                                .foregroundStyle(.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            
+                            Text(item.user.name.capitalized)
+                                .font(.title2.bold())
+                                .fontDesign(.rounded)
+                                .lineLimit(2)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .shadow(radius: 5)
+                        .onAppear {
+                            if (viewModel.viewData.count - 4) > 0, index == (viewModel.viewData.count - 4) {
+                                Task {
+                                    await viewModel.getViewData(limit: 15)
+                                }
+                            }
+                        }
+                    }
+                }
+                .padding()
+            }
+        }
+        .background(.bar)
+        .navigationTitle("Grid")
+        .task {
+            await viewModel.getViewData(limit: 15)
+        }
+    }
+}
+
+struct GridView_Previews: PreviewProvider {
+    static var previews: some View {
+        GridView()
+    }
+}
