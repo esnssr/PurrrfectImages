@@ -77,8 +77,7 @@
 				ED5624502AC4AA730099EA10 /* ContentView.swift */,
 				ED56248D2AC4CDCD0099EA10 /* MainView.swift */,
 				ED5624682AC4B1E70099EA10 /* PurrrImage.swift */,
-				ED56246A2AC4B2F00099EA10 /* DataService.swift */,
-				ED5624882AC4B9990099EA10 /* ImageModel.swift */,
+				ED5624972AC5F6DF0099EA10 /* Data */,
 				ED56245C2AC4AE4B0099EA10 /* Screens */,
 				ED5624522AC4AA750099EA10 /* Assets.xcassets */,
 				ED5624542AC4AA750099EA10 /* Preview Content */,
@@ -103,6 +102,15 @@
 				ED5624912AC4DE590099EA10 /* FullView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		ED5624972AC5F6DF0099EA10 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ED56246A2AC4B2F00099EA10 /* DataService.swift */,
+				ED5624882AC4B9990099EA10 /* ImageModel.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
