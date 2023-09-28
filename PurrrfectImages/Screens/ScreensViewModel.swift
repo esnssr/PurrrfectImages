@@ -71,7 +71,7 @@ class ScreensViewModel: ObservableObject {
                     .compactMap({ $0.urls.full })
                     .map {
                         var requst = ImageRequest(url: $0)
-                        requst.processors = [.rsize(size: .init(width: 130, height: 130))]
+                        requst.processors = [.resize(size: .init(width: 130, height: 130))]
                         return requst
                     }
                 
