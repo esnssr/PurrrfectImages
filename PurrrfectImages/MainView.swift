@@ -25,7 +25,7 @@ struct MainView: View {
                     .font(.largeTitle.bold())
                     .fontDesign(.rounded)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 24)
                 
                 VStack(spacing: 16) {
                     NavigationLink {
@@ -85,25 +85,10 @@ struct MainView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     .shadow(radius: 3)
                     
-                    
-                    
-                    HStack {
-                        Image(systemName: "pawprint.fill")
-                            .font(.title2)
-                        
-                        Text("Cats")
-                            .fontDesign(.rounded)
-                            .font(.title.bold())
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(24)
-                    .background(.pink.gradient)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-                    .shadow(radius: 3)
+                    Spacer()
                 }
                 
-                VStack(spacing: 8) {
+                VStack(spacing: 24) {
                     Text("Image Size")
                         .font(.largeTitle.bold())
                         .fontDesign(.rounded)

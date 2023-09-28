@@ -43,6 +43,7 @@ struct FullView: View {
         }
         .background(.bar)
         .navigationTitle("Full")
+        .navigationBarTitleDisplayMode(.large)
         .task {
             await viewModel.getViewData(limit: 10)
         }

@@ -97,9 +97,9 @@
 		ED56245C2AC4AE4B0099EA10 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				ED56248B2AC4C03F0099EA10 /* ScreensViewModel.swift */,
 				ED56245D2AC4AE580099EA10 /* ListView.swift */,
 				ED56248F2AC4D6710099EA10 /* GridView.swift */,
-				ED56248B2AC4C03F0099EA10 /* ScreensViewModel.swift */,
 				ED5624912AC4DE590099EA10 /* FullView.swift */,
 			);
 			path = Screens;

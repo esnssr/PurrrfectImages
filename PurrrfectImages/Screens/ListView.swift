@@ -56,6 +56,7 @@ struct ListView: View {
         }
         .background(.bar)
         .navigationTitle("List")
+        .navigationBarTitleDisplayMode(.large)
         .task {
             await viewModel.getViewData(limit: 20)
         }

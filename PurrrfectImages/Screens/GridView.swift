@@ -60,6 +60,7 @@ struct GridView: View {
         }
         .background(.bar)
         .navigationTitle("Grid")
+        .navigationBarTitleDisplayMode(.large)
         .task {
             await viewModel.getViewData(limit: 15)
         }
