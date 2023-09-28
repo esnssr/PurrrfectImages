@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GridView: View {
     
-    @ObservedObject var viewModel = ScreensViewModel()
+    @StateObject var viewModel = ScreensViewModel()
     var imageSize: MainView.ImageSizes = .small
     
     let columns = [
@@ -29,7 +29,7 @@ struct GridView: View {
                                 .frame(width: 60, height: 60)
                                 .padding(8)
                                 .frame(width: 130, height: 130)
-                                .purrrImage(item.urls[imageSize.rawValue])
+                                .purrrImage(item.urls[imageSize.rawValue], preferedSize: .init(width: 130, height: 130))
                                 .frame(width: 130, height: 130)
                                 .background(.blue.gradient)
                                 .foregroundStyle(.white)

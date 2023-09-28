@@ -48,7 +48,7 @@ class DataService {
         }
         
         let decodedData = try JSONDecoder().decode([ImageModel].self, from: data)
-        
+//        debugPrint("Data is \(decodedData)")
         return decodedData
     }
 }

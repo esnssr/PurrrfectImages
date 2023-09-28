@@ -7,13 +7,26 @@
 
 import SwiftUI
 import NukeUI
+import Nuke
+
 
 private struct PurrrImage: ViewModifier {
+    private var customPipline: ImagePipeline {
+        var piplineConfiguration: ImagePipeline.Configuration = .withURLCache
+        piplineConfiguration.isProgressiveDecodingEnabled = true
+        piplineConfiguration.isUsingPrepareForDisplay = false
+        piplineConfiguration.isDecompressionEnabled = true
+        piplineConfiguration.isStoringPreviewsInMemoryCache = false
+        let pipline = ImagePipeline.init(configuration: piplineConfiguration)
+        return pipline
+    }
+        
     var imageUrlString: URL?
-    
+    var preferedSize: CGSize?
+
     func body(content: Content) -> some View {
         if let imageUrlString {
-            LazyImage(url: imageUrlString) { state in
+            LazyImage(request: createImageRequest(url: imageUrlString)) { state in
                 if let image = state.image {
                     image // Displays the loaded image
                 } else if state.isLoading {
@@ -32,16 +45,28 @@ private struct PurrrImage: ViewModifier {
                         .background(.red.gradient)
                 }
             }
+            .pipeline(customPipline)
         } else {
             content
         }
+    }
+    
+    private func createImageRequest(url: URL) -> ImageRequest {
+        var request = ImageRequest(url: url)
+        
+        if let preferedSize {
+            
+            request.processors = [.resize(size: preferedSize)]
+        }
+        
+        return request
     }
 }
 
 
 extension View {
     /// Loads, caches and meows back to you a purrrrfect image 🐾, not in this order :)
-    func purrrImage(_ imageUrlString: URL?) -> some View {
-        modifier(PurrrImage(imageUrlString: imageUrlString))
+    func purrrImage(_ imageUrlString: URL?, preferedSize: CGSize? = nil) -> some View {
+        modifier(PurrrImage(imageUrlString: imageUrlString, preferedSize: preferedSize))
     }
 }

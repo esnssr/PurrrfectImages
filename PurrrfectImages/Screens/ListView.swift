@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    @ObservedObject var viewModel = ScreensViewModel()
+    @StateObject var viewModel = ScreensViewModel()
     var imageSize: MainView.ImageSizes = .small
     
     var body: some View {
@@ -24,7 +24,7 @@ struct ListView: View {
                                 .frame(width: 32, height: 32)
                                 .padding(8)
                                 .frame(width: 60, height: 60)
-                                .purrrImage(item.urls[imageSize.rawValue])
+                                .purrrImage(item.urls[imageSize.rawValue], preferedSize: .init(width: 60, height: 60))
                                 .frame(width: 60, height: 60)
                                 .background(.blue.gradient)
                                 .foregroundStyle(.white)
@@ -57,6 +57,9 @@ struct ListView: View {
         .background(.bar)
         .navigationTitle("List")
         .navigationBarTitleDisplayMode(.large)
+        .onDisappear(perform: {
+            
+        })
         .task {
             await viewModel.getViewData(limit: 20)
         }

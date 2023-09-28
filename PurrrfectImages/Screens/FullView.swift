@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FullView: View {
     
-    @ObservedObject var viewModel = ScreensViewModel()
+    @StateObject var viewModel = ScreensViewModel()
     var imageSize: MainView.ImageSizes = .small
     
     @State var gridLayout: [GridItem] = [ GridItem(.flexible(), spacing: 16) ]
