@@ -9,8 +9,11 @@ import SwiftUI
 
 struct GridView: View {
     
-    @StateObject var viewModel = ScreensViewModel()
-    var imageSize: MainView.ImageSizes = .small
+    @StateObject var viewModel: ScreensViewModel
+    
+    init(selectedSize: MainView.ImageSizes = .full) {
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 130, height: 130), selectedSize: selectedSize))
+    }
     
     let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -22,14 +25,14 @@ struct GridView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 24) {
                     ForEach(Array(viewModel.viewData.enumerated()), id: \.1) { index, item in
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .center) {
                             Image(systemName: "photo.circle.fill")
                                 .resizable()
-                                .scaledToFill()
+                                .scaledToFit()
                                 .frame(width: 60, height: 60)
                                 .padding(8)
-                                .frame(width: 130, height: 130)
-                                .purrrImage(item.urls[imageSize.rawValue], preferedSize: .init(width: 130, height: 130))
+                                .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 130, height: 130))
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 130, height: 130)
                                 .background(.blue.gradient)
                                 .foregroundStyle(.white)
@@ -38,7 +41,6 @@ struct GridView: View {
                             Text(item.user.name.capitalized)
                                 .font(.title2.bold())
                                 .fontDesign(.rounded)
-                                .lineLimit(2)
                         }
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)

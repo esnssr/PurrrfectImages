@@ -8,7 +8,9 @@
 import Foundation
 
 struct ImageModel: Codable, Hashable, Identifiable {
-    let id: UUID = UUID()
+    var id: UUID {
+        return UUID()
+    }
     let user: ImageUser
     let urls: ImageURLs
 }

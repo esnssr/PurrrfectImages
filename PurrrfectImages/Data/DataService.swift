@@ -44,11 +44,12 @@ class DataService {
         let (data, response) = try await URLSession.shared.data(from: endpointUrl)
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            fatalError("usuccessful response, just like you apperantly...")
+            debugPrint(response)
+            return []
         }
         
         let decodedData = try JSONDecoder().decode([ImageModel].self, from: data)
-//        debugPrint("Data is \(decodedData)")
+
         return decodedData
     }
 }

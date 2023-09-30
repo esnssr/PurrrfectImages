@@ -17,8 +17,8 @@ class ScreensViewModel: ObservableObject {
     
     private var nextPage = 1 {
         didSet {
-            // limit page numbers to 50 for the demo
-            canLoadMore = nextPage != 50
+            // limit page numbers to 100 for the demo
+            canLoadMore = nextPage != 100
         }
     }
     
@@ -30,16 +30,20 @@ class ScreensViewModel: ObservableObject {
     
     @Published private(set) var viewData = [ImageModel]()
     
+    let imagesSize: CGSize
+    let selectedSize: MainView.ImageSizes
     
-    init() {
-        var piplineConfiguration: ImagePipeline.Configuration = .withURLCache
-        piplineConfiguration.isProgressiveDecodingEnabled = false
-        piplineConfiguration.isUsingPrepareForDisplay = false
-        piplineConfiguration.isDecompressionEnabled = true
-        piplineConfiguration.isStoringPreviewsInMemoryCache = false
-        let pipline = ImagePipeline.init(configuration: piplineConfiguration)
+    init(imagesSize: CGSize, selectedSize: MainView.ImageSizes) {
+        self.imagesSize = imagesSize
+        self.selectedSize = selectedSize
+        var pipelineConfiguration: ImagePipeline.Configuration = .withURLCache
+        pipelineConfiguration.isProgressiveDecodingEnabled = false
+        pipelineConfiguration.isUsingPrepareForDisplay = false
+        pipelineConfiguration.isDecompressionEnabled = true
+        pipelineConfiguration.isStoringPreviewsInMemoryCache = false
+        let pipeline = ImagePipeline(configuration: pipelineConfiguration)
         
-        purrrfetcher = ImagePrefetcher(destination: .diskCache)
+        purrrfetcher = ImagePrefetcher(pipeline: pipeline, destination: .diskCache)
         
         purrrfetcher?.didComplete = {
             print("did finish prefetching")
@@ -58,25 +62,25 @@ class ScreensViewModel: ObservableObject {
             
             if viewData.isEmpty {
                 viewData.append(contentsOf: images)
+                // immediately start fetching the next page to prefetch its images
                 await getViewData(shouldUpdate: false, limit: limit)
             } else {
-                /*
-                 1: stop prefetching the last batch, we are now going to present it
-                    the display modifier will take over now
-                 */
-                purrrfetcher?.stopPrefetching(with: lastBatchImageRequests)
-                
-                // Start prefetching the next batch
                 let imagesURLs: [ImageRequest] = images
-                    .compactMap({ $0.urls.full })
+                    .compactMap({ $0.urls[selectedSize.rawValue ] })
                     .map {
-                        var requst = ImageRequest(url: $0)
-                        requst.processors = [.resize(size: .init(width: 130, height: 130))]
-                        return requst
+                        var request = ImageRequest(url: $0)
+                        /*
+                         We need to use the same processors we use
+                         in the requests and in the prefetcher.
+                         */
+                        request.processors = [.resize(size: imagesSize)]
+                        return request
                     }
-                
-                self.lastBatchImageRequests = imagesURLs
                 self.purrrfetcher?.startPrefetching(with: imagesURLs)
+                
+                
+                purrrfetcher?.stopPrefetching(with: lastBatchImageRequests)
+                self.lastBatchImageRequests = imagesURLs
                 
                 // only update if we are requesting the data from the view.
                 // this is just to avoid updating the data in the first batch

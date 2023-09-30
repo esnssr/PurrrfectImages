@@ -9,10 +9,13 @@ import SwiftUI
 
 struct FullView: View {
     
-    @StateObject var viewModel = ScreensViewModel()
-    var imageSize: MainView.ImageSizes = .small
+    @StateObject var viewModel: ScreensViewModel
     
-    @State var gridLayout: [GridItem] = [ GridItem(.flexible(), spacing: 16) ]
+    init(selectedSize: MainView.ImageSizes = .full) {
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 370, height: 200), selectedSize: selectedSize))
+    }
+    
+    @State var gridLayout: [GridItem] = [GridItem(.flexible(), spacing: 16)]
     
     var body: some View {
         VStack {
@@ -21,18 +24,20 @@ struct FullView: View {
                     ForEach(Array(viewModel.viewData.enumerated()), id: \.1) { index, item in
                         Image(systemName: "photo.circle.fill")
                             .resizable()
-                            .scaledToFill()
+                            .scaledToFit()
                             .frame(width: 32, height: 32)
                             .padding(8)
-                            .purrrImage(item.urls[imageSize.rawValue])
+                            .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 370, height: 200))
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 370, height: 200)
                             .background(.blue.gradient)
                             .foregroundStyle(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                             .onAppear {
-                                if (viewModel.viewData.count - 4) > 0, index == (viewModel.viewData.count - 4) {
+                                if (viewModel.viewData.count - 4) > 0,
+                                   index == (viewModel.viewData.count - 4) {
                                     Task {
-                                        await viewModel.getViewData(limit: 10)
+                                        await viewModel.getViewData(limit: 15)
                                     }
                                 }
                             }
@@ -45,7 +50,7 @@ struct FullView: View {
         .navigationTitle("Full")
         .navigationBarTitleDisplayMode(.large)
         .task {
-            await viewModel.getViewData(limit: 10)
+            await viewModel.getViewData(limit: 15)
         }
     }
 }

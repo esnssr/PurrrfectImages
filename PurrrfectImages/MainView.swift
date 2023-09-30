@@ -29,7 +29,7 @@ struct MainView: View {
                 
                 VStack(spacing: 16) {
                     NavigationLink {
-                        ListView(imageSize: sizeSelection)
+                        ListView(selectedSize: sizeSelection)
                     } label: {
                         HStack {
                             Image(systemName: "list.bullet.rectangle.portrait.fill")
@@ -48,7 +48,7 @@ struct MainView: View {
                     .shadow(radius: 3)
                     
                     NavigationLink {
-                        GridView(imageSize: sizeSelection)
+                        GridView(selectedSize: sizeSelection)
                     } label: {
                         HStack {
                             Image(systemName: "rectangle.grid.2x2.fill")
@@ -67,7 +67,7 @@ struct MainView: View {
                     .shadow(radius: 3)
 
                     NavigationLink {
-                        FullView(imageSize: sizeSelection)
+                        FullView(selectedSize: sizeSelection)
                     } label: {
                         HStack {
                             Image(systemName: "rectangle.grid.1x2.fill")

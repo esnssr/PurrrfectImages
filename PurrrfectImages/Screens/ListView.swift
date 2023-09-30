@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ListView: View {
     
-    @StateObject var viewModel = ScreensViewModel()
-    var imageSize: MainView.ImageSizes = .small
+    @StateObject var viewModel: ScreensViewModel
+    
+    init(selectedSize: MainView.ImageSizes = .small) {
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 60, height: 60), selectedSize: selectedSize))
+    }
     
     var body: some View {
         VStack {
@@ -20,11 +23,11 @@ struct ListView: View {
                         HStack(spacing: 16) {
                             Image(systemName: "photo.circle.fill")
                                 .resizable()
-                                .scaledToFill()
+                                .scaledToFit()
                                 .frame(width: 32, height: 32)
                                 .padding(8)
-                                .frame(width: 60, height: 60)
-                                .purrrImage(item.urls[imageSize.rawValue], preferedSize: .init(width: 60, height: 60))
+                                .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 60, height: 60))
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 60, height: 60)
                                 .background(.blue.gradient)
                                 .foregroundStyle(.white)

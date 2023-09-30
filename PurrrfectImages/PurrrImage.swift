@@ -11,24 +11,25 @@ import Nuke
 
 
 private struct PurrrImage: ViewModifier {
-    private var customPipline: ImagePipeline {
-        var piplineConfiguration: ImagePipeline.Configuration = .withURLCache
-        piplineConfiguration.isProgressiveDecodingEnabled = true
-        piplineConfiguration.isUsingPrepareForDisplay = false
-        piplineConfiguration.isDecompressionEnabled = true
-        piplineConfiguration.isStoringPreviewsInMemoryCache = false
-        let pipline = ImagePipeline.init(configuration: piplineConfiguration)
-        return pipline
+    private var customPipeline: ImagePipeline {
+        var pipelineConfiguration: ImagePipeline.Configuration = .withURLCache
+        pipelineConfiguration.isProgressiveDecodingEnabled = false
+        pipelineConfiguration.isUsingPrepareForDisplay = false
+        pipelineConfiguration.isDecompressionEnabled = true
+        pipelineConfiguration.isStoringPreviewsInMemoryCache = false
+        let pipeline = ImagePipeline(configuration: pipelineConfiguration)
+        return pipeline
     }
         
     var imageUrlString: URL?
-    var preferedSize: CGSize?
+    var preferredSize: CGSize?
 
     func body(content: Content) -> some View {
         if let imageUrlString {
             LazyImage(request: createImageRequest(url: imageUrlString)) { state in
                 if let image = state.image {
                     image // Displays the loaded image
+                        .resizable() // for some reason, this disables the isProgressiveDecodingEnabled 🤷🏼‍♂️
                 } else if state.isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -45,7 +46,8 @@ private struct PurrrImage: ViewModifier {
                         .background(.red.gradient)
                 }
             }
-            .pipeline(customPipline)
+            .pipeline(customPipeline)
+            .priority(.high)
         } else {
             content
         }
@@ -54,9 +56,8 @@ private struct PurrrImage: ViewModifier {
     private func createImageRequest(url: URL) -> ImageRequest {
         var request = ImageRequest(url: url)
         
-        if let preferedSize {
-            
-            request.processors = [.resize(size: preferedSize)]
+        if let preferredSize {
+            request.processors = [.resize(size: preferredSize)]
         }
         
         return request
@@ -66,7 +67,7 @@ private struct PurrrImage: ViewModifier {
 
 extension View {
     /// Loads, caches and meows back to you a purrrrfect image 🐾, not in this order :)
-    func purrrImage(_ imageUrlString: URL?, preferedSize: CGSize? = nil) -> some View {
-        modifier(PurrrImage(imageUrlString: imageUrlString, preferedSize: preferedSize))
+    func purrrImage(_ imageUrlString: URL?, preferredSize: CGSize? = nil) -> some View {
+        modifier(PurrrImage(imageUrlString: imageUrlString, preferredSize: preferredSize))
     }
 }
