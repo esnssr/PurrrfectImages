@@ -13,7 +13,7 @@ import Nuke
 private struct PurrrImage: ViewModifier {
     private var customPipeline: ImagePipeline {
         var pipelineConfiguration: ImagePipeline.Configuration = .withURLCache
-        pipelineConfiguration.isProgressiveDecodingEnabled = false
+        pipelineConfiguration.isProgressiveDecodingEnabled = true
         pipelineConfiguration.isUsingPrepareForDisplay = false
         pipelineConfiguration.isDecompressionEnabled = true
         pipelineConfiguration.isStoringPreviewsInMemoryCache = false
