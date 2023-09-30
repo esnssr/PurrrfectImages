@@ -36,14 +36,8 @@ class ScreensViewModel: ObservableObject {
     init(imagesSize: CGSize, selectedSize: MainView.ImageSizes) {
         self.imagesSize = imagesSize
         self.selectedSize = selectedSize
-        var pipelineConfiguration: ImagePipeline.Configuration = .withURLCache
-        pipelineConfiguration.isProgressiveDecodingEnabled = false
-        pipelineConfiguration.isUsingPrepareForDisplay = false
-        pipelineConfiguration.isDecompressionEnabled = true
-        pipelineConfiguration.isStoringPreviewsInMemoryCache = false
-        let pipeline = ImagePipeline(configuration: pipelineConfiguration)
         
-        purrrfetcher = ImagePrefetcher(pipeline: pipeline, destination: .diskCache)
+        purrrfetcher = ImagePrefetcher(destination: .diskCache)
         
         purrrfetcher?.didComplete = {
             print("did finish prefetching")
@@ -66,7 +60,7 @@ class ScreensViewModel: ObservableObject {
                 await getViewData(shouldUpdate: false, limit: limit)
             } else {
                 let imagesURLs: [ImageRequest] = images
-                    .compactMap({ $0.urls[selectedSize.rawValue ] })
+                    .compactMap({ $0.urls[selectedSize.rawValue] })
                     .map {
                         var request = ImageRequest(url: $0)
                         /*
