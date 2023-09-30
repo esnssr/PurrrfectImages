@@ -12,7 +12,7 @@ struct ListView: View {
     @StateObject var viewModel: ScreensViewModel
     
     init(selectedSize: MainView.ImageSizes = .small) {
-        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 60, height: 60), selectedSize: selectedSize))
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel( selectedSize: selectedSize))
     }
     
     var body: some View {
@@ -26,7 +26,7 @@ struct ListView: View {
                                 .scaledToFit()
                                 .frame(width: 32, height: 32)
                                 .padding(8)
-                                .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 60, height: 60))
+                                .purrrImage(item.urls[viewModel.selectedSize.rawValue])
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 60, height: 60)
                                 .background(.blue.gradient)

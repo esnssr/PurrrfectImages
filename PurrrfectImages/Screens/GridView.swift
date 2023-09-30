@@ -12,7 +12,7 @@ struct GridView: View {
     @StateObject var viewModel: ScreensViewModel
     
     init(selectedSize: MainView.ImageSizes = .full) {
-        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 130, height: 130), selectedSize: selectedSize))
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel( selectedSize: selectedSize))
     }
     
     let columns = [
@@ -31,7 +31,7 @@ struct GridView: View {
                                 .scaledToFit()
                                 .frame(width: 60, height: 60)
                                 .padding(8)
-                                .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 130, height: 130))
+                                .purrrImage(item.urls[viewModel.selectedSize.rawValue])
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 130, height: 130)
                                 .background(.blue.gradient)

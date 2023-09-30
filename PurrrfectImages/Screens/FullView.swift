@@ -12,7 +12,7 @@ struct FullView: View {
     @StateObject var viewModel: ScreensViewModel
     
     init(selectedSize: MainView.ImageSizes = .full) {
-        self._viewModel = StateObject(wrappedValue: ScreensViewModel(imagesSize: .init(width: 370, height: 200), selectedSize: selectedSize))
+        self._viewModel = StateObject(wrappedValue: ScreensViewModel(selectedSize: selectedSize))
     }
     
     @State var gridLayout: [GridItem] = [GridItem(.flexible(), spacing: 16)]
@@ -27,7 +27,7 @@ struct FullView: View {
                             .scaledToFit()
                             .frame(width: 32, height: 32)
                             .padding(8)
-                            .purrrImage(item.urls[viewModel.selectedSize.rawValue], preferredSize: .init(width: 370, height: 200))
+                            .purrrImage(item.urls[viewModel.selectedSize.rawValue])
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 370, height: 200)
                             .background(.blue.gradient)
@@ -37,6 +37,7 @@ struct FullView: View {
                                 if (viewModel.viewData.count - 4) > 0,
                                    index == (viewModel.viewData.count - 4) {
                                     Task {
+                                        // for some reason the api won't accept <10 limit
                                         await viewModel.getViewData(limit: 15)
                                     }
                                 }
